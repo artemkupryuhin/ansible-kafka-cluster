@@ -1,6 +1,0 @@
----
- - hosts: kafka_nodes
-    
-   tasks: 
-    - name: Ping
-      ping:
