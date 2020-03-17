@@ -1,4 +1,7 @@
 ---
+- name: Set sudoer
+  include: set_sudoer.yml
+  
 - name: Install Java
   include: java-install.yml
 
