@@ -1,8 +1,7 @@
 ---
-
+#Modify file sudoers (ansible-playbook set_sudoer.yml -b -K)
 - hosts: all
   tasks:
-    - name: Modify file sudoers (ansible-playbook set_sudoer.yml -b -K)
     - lineinfile:
         path: /etc/sudoers
         state: present
