@@ -1,2 +1,10 @@
 ---
-# defaults file for kafka-cluster
+kafka_apache_mirror: http://us.mirrors.quenda.co/apache/kafka
+kafka_version_kafka: 2.4.0
+kafka_version_scala: 2.12
+kafka_install_parent_dir: /usr/local
+
+
+
+
+
