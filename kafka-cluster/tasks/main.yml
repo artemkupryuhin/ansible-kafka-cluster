@@ -1,29 +1,5 @@
 ---
-- name: Attempt to download and unarchive...
-  block:
-    - name: Download kafka tgz...
-      become: yes
-      get_url:
-        dest: "/tmp/kafka_{{ kafka_version_scala }}-{{ kafka_version_kafka }}.tgz"
-        url: "{{ kafka_apache_mirror }}/kafka/{{ kafka_version_kafka }}/\
-           kafka_{{ kafka_version_scala }}-{{ kafka_version_kafka }}.tgz"
-        mode: '0644'
-    - name: Create a {{ kafka_install_dir }} if it does not exist...
-      become: yes
-      file:
-        path: '{{ kafka_install_dir }}'
-        state: directory
-        mode: '0755'
-    - name: Unarchive...
-      become: yes
-      unarchive:
-        remote_src: yes
-        src: /tmp/kafka_{{ kafka_version_scala }}-{{ kafka_version_kafka }}.tgz
-        dest: '{{ kafka_install_dir }}'
-        extra_opts: [--strip-components=1]
-  always:
-     - name: Delete archive...
-       become: yes
-       file:
-        path: /tmp/kafka_{{ kafka_version_scala }}-{{ kafka_version_kafka }}.tgz
-        state: absent
+- name: Install Apache Kafka
+  include: build.yml
+- name: Settings services
+  include: services.yml
