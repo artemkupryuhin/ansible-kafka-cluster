@@ -1,0 +1,8 @@
+---
+- name: "Update apt and install OpenJDK Java {{ kafka_java_version }}"
+  become: yes
+  apt:
+    name: "openjdk-{{  kafka_java_version }}-jdk"
+    state: present
+    cache_valid_time: 1800
+    update_cache: yes

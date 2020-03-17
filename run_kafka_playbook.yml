@@ -1,14 +1,5 @@
 - name: Install Kafka Server
   hosts: kafka01
 
-  pre_tasks:
-    - name: Update apt and Install Java
-      become: yes
-      apt:
-        name: default-jre
-        state: present
-        cache_valid_time: 1800
-        update_cache: yes
-
   roles:
     - name: kafka-cluster
