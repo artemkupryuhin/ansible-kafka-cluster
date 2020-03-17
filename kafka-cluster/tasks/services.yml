@@ -7,10 +7,26 @@
     src: zookeeper.service.j2
   when: ansible_service_mgr == "systemd"
 
+- name: Add Kafka SystemD script
+  become: yes
+  template:
+    dest: /etc/systemd/system/kafka.service
+    mode: u+rw,g+rw,o+r
+    src: kafka.service.j2
+  when: ansible_service_mgr == "systemd"
+
 - name: Ensure Zookeeper is enabled for SystemD
   become: yes
   systemd:
     daemon_reload: yes
     name: zookeeper
+    enabled: yes
+  when: ansible_service_mgr == "systemd"
+
+- name: Ensure Kafka is enabled for SystemD
+  become: yes
+  systemd:
+    daemon_reload: yes
+    name: kafka
     enabled: yes
   when: ansible_service_mgr == "systemd"
