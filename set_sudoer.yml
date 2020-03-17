@@ -1,0 +1,10 @@
+---
+- name: Modify file sudoers (ansible-playbook all --limit 192.168.56.12 set_sudoer.yml -b -K)
+- hosts: all
+  tasks:
+    - lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^%sudo'
+        line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
