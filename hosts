@@ -1,5 +1,5 @@
 [kafka_nodes]
-kafka01 ansible_host=192.168.205.88
+kafka01 ansible_host=192.168.205.92
 kafka02 ansible_host=192.168.205.181
 kafka03 ansible_host=192.168.205.180
 
