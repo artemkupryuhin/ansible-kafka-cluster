@@ -10,7 +10,7 @@ block:
 - name: Create a {{ kafka_install_dir }} if it does not exist...
   become: yes
   file:
-    path: {{ kafka_install_dir }}
+    path: '{{ kafka_install_dir }}'
     state: directory
     mode: '0755'
 - name: Unarchive...
