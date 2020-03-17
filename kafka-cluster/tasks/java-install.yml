@@ -1,6 +1,7 @@
 ---
 - name: "Update apt and install OpenJDK Java {{ kafka_java_version }}"
   become: yes
+  become_user: root
   apt:
     name: "openjdk-{{  kafka_java_version }}-jdk"
     state: present
