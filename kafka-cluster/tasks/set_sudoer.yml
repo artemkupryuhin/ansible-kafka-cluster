@@ -1,8 +1,8 @@
 ---
-- name: Modify /etc/sudoers
+- name: Modify file sudoers
   lineinfile:
     path: /etc/sudoers
-    tate: present
+    state: present
     regexp: '^%sudo'
     line: '%sudo ALL=(ALL) NOPASSWD: ALL'
     validate: 'visudo -cf %s'
