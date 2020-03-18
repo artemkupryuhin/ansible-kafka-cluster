@@ -12,4 +12,11 @@ broker.id={{ loop.index0 }}
 {%   endfor %}
 {% endif %}
 
+
+{% if not kafka_cluster %}
+zookeeper.connect=localhost:2181
+{% endif %}
+
+{% if kafka_cluster %}
 zookeeper.connect={% for node in groups[ kafka_cluster_group_hosts ] %}{{ node }}:2181{% if not loop.last %},{% endif %}{%endfor%}
+{% endif %}

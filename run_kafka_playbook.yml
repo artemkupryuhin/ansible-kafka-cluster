@@ -1,5 +1,5 @@
 - name: Install Kafka Server
-  hosts: kafka02
+  hosts: kafka_nodes
   gather_facts: yes
   
   roles:
