@@ -31,7 +31,7 @@
     enabled: yes
   when: ansible_service_mgr == "systemd"
 
-  - name: install | Configuring Kafka
+- name: Configuring server.properties
   become: yes
   template:
     dest: "tmp/server.properties"
