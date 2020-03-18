@@ -4,4 +4,4 @@
 broker.id=0
 {% endif %}
 
-zookeeper.connect={% for node in groups['kafka_nodes'] %}{{ node }}:2181{% if not loop.last %},{% endif %}{%endfor%}}
+zookeeper.connect={% for node in groups['kafka_nodes'] %}{{ hostvars[node]['ansible_default_ipv4']['address'] }}:2181{% if not loop.last %},{% endif %}{%endfor%}
