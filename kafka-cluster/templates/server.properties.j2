@@ -4,14 +4,10 @@
 broker.id=0
 {% endif %}
 
-
-
-# {% if kafka_cluster %}
-# {%   for host in groups[ kafka_cluster_group_hosts ] %}
-# {%     if inventory_hostname == host %}
-# broker.id={{ loop.index0 }}
-# {%     endif %}
-# {%   endfor %}
-
-
-#zookeeper.connect={% for node in groups[ kafka_cluster_group_hosts ] %}{{ node }}:2181{% if not loop.last %},{% endif %}{%endfor%}
+{% if kafka_cluster %}
+{%   for host in groups[ kafka_cluster_group_hosts ] %}
+{%     if inventory_hostname == host %}
+broker.id={{ loop.index0 }}
+{%     endif %}
+{%   endfor %}
+{% endif %}
