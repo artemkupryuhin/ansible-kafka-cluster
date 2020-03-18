@@ -1,6 +1,6 @@
 ---
 # handlers file for kafka-cluster
-- name: restart kafka
+- name: Restart kafka service
   become: yes
   service:
     enabled: true

@@ -1,8 +1,8 @@
 ---
-kafka_apache_mirror: https://archive.apache.org/dist/
-kafka_version_kafka: 2.4.0
+kafka_download_url: https://archive.apache.org/dist/
+kafka_version: 2.4.0
 kafka_version_scala: 2.12
 kafka_java_version: 8
-kafka_install_dir: /usr/local/kafka
+kafka_home_dir: /opt/kafka
 kafka_cluster: false
 kafka_zookeeper_cluster: false
