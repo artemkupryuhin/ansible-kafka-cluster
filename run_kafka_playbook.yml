@@ -1,5 +1,5 @@
 - name: Install Kafka Server
-  hosts: kafka01
+  hosts: kafka02
 
   roles:
     - name: kafka-cluster
