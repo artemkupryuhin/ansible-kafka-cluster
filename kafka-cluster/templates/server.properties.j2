@@ -13,10 +13,6 @@
 
 {% if not kafka_cluster %}
 broker.id=0
-{% elif kafka_cluster %}
-broker.id=1000
-{%     endif %}
-{% endif %}
 
 # The address the socket server listens on. It will get the value returned from 
 # java.net.InetAddress.getCanonicalHostName() if not configured.
