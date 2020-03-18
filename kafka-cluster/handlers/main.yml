@@ -1,5 +1,12 @@
 ---
 # handlers file for kafka-cluster
+- name: Restart zookeeper service
+  become: yes
+  service:
+    enabled: true
+    name: zookeeper
+    state: restarted
+
 - name: Restart kafka service
   become: yes
   service:

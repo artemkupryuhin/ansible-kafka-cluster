@@ -36,4 +36,6 @@
   template:
     dest: "{{ kafka_home_dir }}/config/server.properties"
     src: server.properties.j2
-  notify: Restart kafka service
+  notify: 
+    - Restart zookeeper service
+    - Restart kafka service
