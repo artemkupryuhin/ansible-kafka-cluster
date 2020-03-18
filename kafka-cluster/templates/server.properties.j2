@@ -1,16 +1,5 @@
 {{ ansible_managed|comment }}
 
-# {% if not {{ kafka_cluster %}
-# broker.id=0
-# {% elif kafka_cluster %}
-# {%   for host in groups[kafka_cluster_group] %}
-# {%     if inventory_hostname == host %}
-# broker.id={{ loop.index0 }}
-# {%     endif %}
-# {%   endfor %}
-# {% endif %}
-
-
 {% if not {{ kafka_cluster }}  %}
 broker.id=0
 {% endif %}
