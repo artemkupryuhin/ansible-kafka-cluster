@@ -8,6 +8,7 @@
     update_cache: yes
 
 - name: Setup JAVA_HOME variable
+  become: yes
   shell: cat >> /etc/environment <<EOL\
         JAVA_HOME= /usr/lib/jvm/java-{{  kafka_java_version }}-openjdk-amd64
         EOL
