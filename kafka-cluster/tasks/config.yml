@@ -34,6 +34,6 @@
 - name: Configuring server.properties
   become: yes
   template:
-    dest: "/tmp/server.properties"
+    dest: "{{ kafka_home_dir }}/config/server.properties"
     src: server.properties.j2
   notify: Restart kafka service
