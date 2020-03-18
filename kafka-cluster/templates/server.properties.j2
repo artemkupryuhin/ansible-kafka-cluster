@@ -1,6 +1,6 @@
 {{ ansible_managed|comment }}
 
-# {% if not kafka_cluster %}
+# {% if not {{ kafka_cluster %}
 # broker.id=0
 # {% elif kafka_cluster %}
 # {%   for host in groups[kafka_cluster_group] %}
@@ -11,8 +11,9 @@
 # {% endif %}
 
 
-{% if not kafka_cluster %}
+{% if not {{ kafka_cluster }}  %}
 broker.id=0
+{% endif %}
 
 # The address the socket server listens on. It will get the value returned from 
 # java.net.InetAddress.getCanonicalHostName() if not configured.
