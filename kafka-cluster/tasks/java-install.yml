@@ -10,5 +10,5 @@
 - name: Setup JAVA_HOME variable
   become: yes
   shell: cat >> /etc/environment <<EOL\
-        JAVA_HOME= /usr/lib/jvm/java-{{  kafka_java_version }}-openjdk-amd64
+        JAVA_HOME= /usr/lib/jvm/java-1.{{  kafka_java_version }}.0-openjdk-amd64
         EOL
