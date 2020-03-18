@@ -36,5 +36,4 @@
   template:
     dest: "/tmp/server.properties"
     src: server.properties.j2
- 
-  notify: restart kafka
+  notify: Restart kafka service
