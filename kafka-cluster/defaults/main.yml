@@ -4,3 +4,5 @@ kafka_version_kafka: 2.4.0
 kafka_version_scala: 2.12
 kafka_java_version: 8
 kafka_install_dir: /usr/local/kafka
+kafka_cluster: false
+kafka_zookeeper_cluster: false

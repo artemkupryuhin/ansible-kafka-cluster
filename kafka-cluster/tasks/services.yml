@@ -30,3 +30,11 @@
     name: kafka
     enabled: yes
   when: ansible_service_mgr == "systemd"
+
+  - name: install | Configuring Kafka
+  become: yes
+  template:
+    dest: "tmp/server.properties"
+    src: server.properties.j2
+ 
+  notify: restart kafka

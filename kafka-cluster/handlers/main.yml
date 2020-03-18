@@ -1,2 +1,9 @@
 ---
 # handlers file for kafka-cluster
+- name: restart kafka
+  become: yes
+  service:
+    enabled: true
+    name: kafka
+    state: restarted
+  
