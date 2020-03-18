@@ -1,4 +1,6 @@
 {{ ansible_managed }}
 
-
+{% if not kafka_cluster %}
 broker.id=0
+{% endif %}
+
