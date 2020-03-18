@@ -5,5 +5,5 @@ kafka_version_scala: 2.12
 kafka_java_version: 8
 kafka_home_dir: /opt/kafka
 kafka_cluster_group_hosts: kafka_nodes
-kafka_cluster: false
+kafka_cluster: true
 kafka_zookeeper_cluster: false
