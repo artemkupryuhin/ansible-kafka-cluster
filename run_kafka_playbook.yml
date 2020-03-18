@@ -1,6 +1,5 @@
 - name: Install Kafka Server
-  hosts: kafka_nodes
-  gather_facts: yes
+  hosts: kafka_nodes #Set same value to variable kafka_cluster_group_hosts
   
   roles:
     - name: kafka-cluster
