@@ -7,7 +7,7 @@
       blockinfile:
         path: /etc/hosts
         block: |
-          {{ item }} {{ item }}
+          {{ hostvars[item].ansible_ssh_host }} {{ item }}
         marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item }}" 
       with_items: 
         - "{{ groups['kafka_nodes'] }}"
