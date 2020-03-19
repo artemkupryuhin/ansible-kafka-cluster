@@ -9,7 +9,8 @@
         block: | 
             {{ item }} 
         #marker: "# {mark} ANSIBLE MANAGED BLOCK" 
-            with_items: "{{ groups['kafka_nodes'] }}"
+      with_items: 
+        - "{{ groups['kafka_nodes'] }}"
        
     
   #roles:
