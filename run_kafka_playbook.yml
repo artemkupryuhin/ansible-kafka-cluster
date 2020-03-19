@@ -14,7 +14,7 @@
        
     
   #roles:
-  #  - name: kafka-cluster
+    - name: kafka-cluster
   
   #post_tasks:
   #  - shell: echo 'I":" Beginning to configure web server..'
