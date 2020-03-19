@@ -6,12 +6,11 @@
       become: yes
       blockinfile:
         path: /etc/hosts
-        block: |  
-          1111111 
-        marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item}}" 
+        block: | 
+            {{ item }} 
+        marker: "# {mark} ANSIBLE MANAGED BLOCK" 
+        with_items: "{{ groups.['kafka_nodes'] }}"
        
-
- 
     
   #roles:
   #  - name: kafka-cluster
