@@ -3,12 +3,16 @@
   
   pre_tasks:
     - name: Add mappings to /etc/hosts
-      blockinfile:
-        path: /etc/hosts
-        block: |
-          1111 22222
-        marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
-      #with_items: groups['kafka_nodes']
+  blockinfile:
+    path: /etc/hosts
+    block: |
+      {{ item.ip }} {{ item.name }}
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
+  loop:
+    - { name: host1, ip: 10.10.1.10 }
+    - { name: host2, ip: 10.10.1.11 }
+    - { name: host3, ip: 10.10.1.12 }
+
 
     
   #roles:
