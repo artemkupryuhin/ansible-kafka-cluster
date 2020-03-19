@@ -8,8 +8,8 @@
         path: /etc/hosts
         block: | 
             {{ item }} 
-        marker: "# {mark} ANSIBLE MANAGED BLOCK" 
-        with_items: "{{ groups.['kafka_nodes'] }}"
+        #marker: "# {mark} ANSIBLE MANAGED BLOCK" 
+      with_items: "{{ groups.all }}"
        
     
   #roles:
