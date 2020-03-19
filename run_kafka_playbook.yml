@@ -7,7 +7,6 @@
       blockinfile:
         path: /etc/hosts
         block: |  
-
           {% for node in hostvars %} 
           1111111 
           {% endfor %}
