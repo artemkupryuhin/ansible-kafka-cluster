@@ -8,7 +8,7 @@
         path: /etc/hosts
         block: |  
 
-          {% for item in groups['kafka_nodes'] %} 1111111 
+          {% for node in groups['kafka_nodes'] %} 1111111 
           {% endfor %}
 
           #marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item}}" 
