@@ -37,7 +37,15 @@
     dest: "/tmp/zookeeper.properties"
     src: zookeeper.properties.j2
   notify: 
-    - Restart zookeeper service
+  - Restart zookeeper service
+  
+- name: Configuring file myid
+  become: yes
+  template:
+    dest: "{{ kafka_zookeeper_dataDir }}/myid"
+    src: myid.j2
+  notify: 
+  - Restart zookeeper service
 
 - name: Configuring Kafka Broker config file - server.properties
   become: yes
