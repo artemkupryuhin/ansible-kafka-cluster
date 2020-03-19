@@ -7,10 +7,10 @@
       blockinfile:
         path: /etc/hosts
         block: |
-{% for node in groups[ kafka_cluster_group_hosts ] %}
-    {{ hostvars[node]['ansible_default_ipv4']['address'] }} {{ node }}
-{% endfor %}
-        marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item }}" 
+          {% for node in groups[ kafka_nodes ] -%}
+            {{ hostvars[node]['ansible_default_ipv4']['address'] }} {{ node }}
+          {%- endfor %}
+        marker: "# {mark} ANSIBLE MANAGED BLOCK {{ node }}" 
       
        
     
