@@ -31,11 +31,18 @@
     enabled: yes
   when: ansible_service_mgr == "systemd"
 
-- name: Configuring server.properties
+- name: Configuring Zookeeper config file - zookeeper.properties
+  become: yes
+  template:
+    dest: "/tmp/zookeeper.properties"
+    src: zookeeper.properties.j2
+  notify: 
+    - Restart zookeeper service
+
+- name: Configuring Kafka Broker config file - server.properties
   become: yes
   template:
     dest: "{{ kafka_home_dir }}/config/server.properties"
     src: server.properties.j2
   notify: 
-    - Restart zookeeper service
     - Restart kafka service
