@@ -1,16 +1,17 @@
-  hosts: kafka_nodes #Set same value to variable kafka_cluster_group_hosts
+  
   
   pre_tasks:
     - name: Add mappings to /etc/hosts
-  blockinfile:
-    path: /etc/hosts
-    block: |
-      {{ item.ip }} {{ item.name }}
-    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
-  loop:
-    - { name: host1, ip: 10.10.1.10 }
-    - { name: host2, ip: 10.10.1.11 }
-    - { name: host3, ip: 10.10.1.12 }
+      hosts: kafka_nodes #Set same value to variable kafka_cluster_group_hosts
+      blockinfile:
+        path: /etc/hosts
+        block: |
+          {{ item.ip }} {{ item.name }}
+        marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
+      loop:
+         - { name: host1, ip: 10.10.1.10 }
+         - { name: host2, ip: 10.10.1.11 }
+         - { name: host3, ip: 10.10.1.12 }
 
 
     
