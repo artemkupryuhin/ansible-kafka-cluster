@@ -2,7 +2,7 @@
   hosts: kafka_nodes
 
   pre_tasks:
-    - name: Add mappings
+    - name: Add mappings /etc/hosts
       become: yes
       blockinfile:
         path: /etc/hosts
