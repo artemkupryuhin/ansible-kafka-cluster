@@ -34,11 +34,11 @@
 - name: Configuring Zookeeper config file - zookeeper.properties
   become: yes
   template:
-    dest: "/tmp/zookeeper.properties"
+    dest: "{{ kafka_home_dir }}/config/zookeeper.properties"
     src: zookeeper.properties.j2
   notify: 
   - Restart zookeeper service
-  
+
 - name: Configuring file myid
   become: yes
   template:
