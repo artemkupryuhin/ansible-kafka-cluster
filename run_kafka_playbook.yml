@@ -7,14 +7,15 @@
       blockinfile:
         path: /etc/hosts
         block: |
-          {{ hostvars[item].ansible_ssh_host }} {{ item }}
+{% for node in groups[ kafka_cluster_group_hosts ] %}
+    {{ hostvars[node]['ansible_default_ipv4']['address'] }} {{ node }}
+{% endfor %}
         marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item }}" 
-      with_items: 
-        - "{{ groups['kafka_nodes'] }}"
+      
        
     
-  roles:
-    - name: kafka-cluster
+  #roles:
+ #   - name: kafka-cluster
   
   #post_tasks:
   #  - shell: echo 'I":" Beginning to configure web server..'

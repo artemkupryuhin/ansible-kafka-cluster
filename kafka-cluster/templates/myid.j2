@@ -2,7 +2,8 @@
 {%   for host in groups[ kafka_cluster_group_hosts ] %}
 {%     if inventory_hostname == host %}
 {{ loop.index0+1}}
-{{ inventory_hostname.split('.')[0] }}
+{{ inventory_hostname.split('-')[0] }}
+{{ ansible_hostname.split('-')[0] }}
 {%     endif %}
 {%   endfor %}
 {% endif %}
