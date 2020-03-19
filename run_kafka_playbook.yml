@@ -6,9 +6,9 @@
       blockinfile:
         path: /etc/hosts
         block: |
-          {{ item }} {{ item }}
+          1111 22222
         marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
-      with_items: groups['kafka_nodes']
+      #with_items: groups['kafka_nodes']
 
     
   #roles:
