@@ -4,10 +4,11 @@
   pre_tasks:
     - name: Add mappings
       become: yes
-      lineinfile:
-         dest: /etc/hosts
-         line: "{{ hostvars[item].ansible_ssh_host }} {{ item }}"
-         state: present 
+      blockinfile:
+        path: /etc/hosts
+        block: |
+          {{ item }} {{ item }}
+        marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item }}" 
       with_items: 
         - "{{ groups['kafka_nodes'] }}"
        
