@@ -17,4 +17,6 @@
   
   post_tasks:
     - debug: 
-       msg: "{{ kafka_zookeeper_dataDir }}"
+       msg: "{{ kafka_data_dir }}/bin/kafka-topics.sh \ 
+            --create --zookeeper localhost:2181 --replication-factor 3 \
+            --partitions 12 --topic SampleTopic"
