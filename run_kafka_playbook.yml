@@ -2,13 +2,13 @@
   hosts: kafka_nodes
 
   pre_tasks:
-    - name: Add mappings to /etc/hosts
+    - name: Add mappings
       become: yes
       blockinfile:
         path: /etc/hosts
         block: |  
           {% for node in groups['kafka_nodes'] %}
-          {{ hostvars[node].ansible_ssh_host }}   {{ node }}    
+            {{ hostvars[node].ansible_ssh_host }}   {{ node }}    
           {% endfor %}
         marker: "# {mark} ANSIBLE MANAGED BLOCK {{ node }}"
 
