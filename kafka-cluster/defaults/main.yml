@@ -9,4 +9,4 @@ kafka_data_dir: /opt/kafka/data
 kafka_log_retention_hours: 168
 kafka_cluster_group_hosts: kafka_nodes
 kafka_cluster: true
-kafka_zookeeper_cluster: true
+kafka_zookeeper_cluster: false
