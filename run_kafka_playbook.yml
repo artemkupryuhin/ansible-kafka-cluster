@@ -13,7 +13,7 @@
         - "{{ groups['kafka_nodes'] }}"
        
     
-  #roles:
+  roles:
     - name: kafka-cluster
   
   #post_tasks:
