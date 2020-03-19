@@ -9,8 +9,8 @@
         block: |
           {% for node in groups[ kafka_nodes ] -%}
             {{ hostvars[node]['ansible_default_ipv4']['address'] }} {{ node }}
-          {%- endfor %}
-        marker: "# {mark} ANSIBLE MANAGED BLOCK {{ node }}" 
+          {% endfor %}
+        marker: "# {mark} ANSIBLE MANAGED BLOCK" 
       
        
     
