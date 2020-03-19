@@ -17,7 +17,7 @@
   
   post_tasks:
     - debug: 
-       msg: "{{ kafka_data_dir }}/bin/kafka-topics.sh \ 
+       msg: "groups['kafka_nodes'][0] {{ kafka_data_dir }}/bin/kafka-topics.sh \ 
             --create --zookeeper {% for node in groups[ kafka_cluster_group_hosts ] -%} \ 
             {{ node }}:2181{% if not loop.last %},{% endif %}{%- endfor %} --replication-factor 3 \
             --partitions 12 --topic SampleTopic"
