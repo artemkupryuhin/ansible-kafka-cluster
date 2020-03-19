@@ -11,18 +11,14 @@ admin.enableServer=false
 # admin.serverPort=8080
 {% endif %}
 
-
-
-
 {% if kafka_zookeeper_cluster %}
-{% for node in groups[ kafka_cluster_group_hosts ] %}
 
 tickTime=2000
 initLimit=5
-syncLimit=2 
+syncLimit=2
 
+{% for node in groups[ kafka_cluster_group_hosts ] %}
 server.{{ loop.index0 }}={{ hostvars[node]['ansible_all_ipv4_addresses'][0] }}:2888:3888
-
 {% if not loop.last %}
 {% endif %}
 {%endfor%}
