@@ -5,11 +5,7 @@ broker.id=0
 {% endif %}
 
 {% if kafka_cluster %}
-{%   for host in groups[ kafka_cluster_group_hosts ] %}
-{%     if inventory_hostname == host %}
-broker.id={{ loop.index0 }}
-{%     endif %}
-{%   endfor %}
+broker.id={{ inventory_hostname.split('-')[1] }}
 {% endif %}
 
 ############################# Socket Server Settings #############################
@@ -20,7 +16,7 @@ broker.id={{ loop.index0 }}
 #     listeners = listener_name://host_name:port
 #   EXAMPLE:
 #     listeners = PLAINTEXT://your.host.name:9092
-#listeners=PLAINTEXT://:9092
+listeners=PLAINTEXT://{{ inventory_hostname }}:9092
 
 # Hostname and port the broker will advertise to producers and consumers. If not set, 
 # it uses the value for "listeners" if configured.  Otherwise, it will use the value
@@ -118,7 +114,7 @@ zookeeper.connect=localhost:2181
 {% endif %}
 
 {% if kafka_cluster %}
-zookeeper.connect={% for node in groups[ kafka_cluster_group_hosts ] %}{{ hostvars[node]['ansible_all_ipv4_addresses'][0] }}:2181{% if not loop.last %},{% endif %}{%endfor%}
+zookeeper.connect={% for node in groups[ kafka_cluster_group_hosts ] %}{{ node }}:2181{% if not loop.last %},{% endif %}{%endfor%}
 {% endif %}
 
 # Timeout in ms for connecting to zookeeper
