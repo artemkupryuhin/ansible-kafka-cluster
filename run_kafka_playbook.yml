@@ -17,7 +17,7 @@
   
   post_tasks:
       - name: Testing Apache Kafka
-        hosts: "{{ kafka_nodes[0] }}"
+        hosts: kafka_nodes[0]
         debug: 
           msg: "{{ kafka_data_dir }}/bin/kafka-topics.sh \ 
             --create --zookeeper {% for node in groups[ kafka_cluster_group_hosts ] -%} \ 
