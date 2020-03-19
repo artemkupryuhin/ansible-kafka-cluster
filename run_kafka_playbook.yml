@@ -3,6 +3,7 @@
 
   pre_tasks:
     - name: Install
+      become: yes
       blockinfile:
         path: /etc/hosts
         block: |  
