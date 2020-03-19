@@ -1,5 +1,18 @@
 - name: Install Kafka Server
   hosts: kafka_nodes #Set same value to variable kafka_cluster_group_hosts
   
+  pre_tasks:
+    - name: Add mappings to /etc/hosts
+      blockinfile:
+        path: /etc/hosts
+        block: |
+          {{ hostvars[item].ansible_host }} {{ item }}
+        marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
+      with_items: groups['kafka_nodes']
+
+    
   roles:
     - name: kafka-cluster
+  
+  #post_tasks:
+  #  - shell: echo 'I":" Beginning to configure web server..'
