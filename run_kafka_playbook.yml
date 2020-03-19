@@ -1,4 +1,3 @@
-- name: Install Kafka Server
   hosts: kafka_nodes #Set same value to variable kafka_cluster_group_hosts
   
   pre_tasks:
