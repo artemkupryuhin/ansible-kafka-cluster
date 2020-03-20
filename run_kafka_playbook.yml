@@ -25,7 +25,7 @@
     #   run_once: true
 
     - name: Run a command
-      shell: cat /etc/hosts
+      shell: ls /opt
       register: output
     - debug:
          msg: "{{ output.stdout }}"
