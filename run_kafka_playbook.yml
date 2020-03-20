@@ -28,7 +28,9 @@
       with_items:
            - zookeeper
            - kafka
-
+      register: services
+    - debug:
+        msg: "{{ services.stdout_lines }}"
     # - name: Test01 - Create Topic
     #   shell: "./kafka-topics.sh --create \
     #     --zookeeper {% for node in groups[ kafka_cluster_group_hosts ] -%} \
@@ -39,6 +41,6 @@
     #   register: output
     #   run_once: true
 
-    - debug:
-        msg: "{{ output.stdout_lines }}"
-      run_once: true
+    # - debug:
+    #     msg: "{{ output.stdout_lines }}"
+    #   run_once: true
