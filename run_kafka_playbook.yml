@@ -25,10 +25,12 @@
     #   run_once: true
 
     - name: Test01 - Create Topic
-      shell: "{{ kafka_data_dir }}/bin/kafka-topics.sh \
-        --create --zookeeper {% for node in groups[ kafka_cluster_group_hosts ] -%} \
+      shell: "kafka-topics.sh --create \
+        --zookeeper {% for node in groups[ kafka_cluster_group_hosts ] -%} \
         {{ node }}:2181{% if not loop.last %},{% endif %}{%- endfor %} --replication-factor 3 \
         --partitions 12 --topic SampleTopic"
+      args:
+        chdir: "{{ kafka_data_dir }}/bin"
       register: output
       run_once: true
 
