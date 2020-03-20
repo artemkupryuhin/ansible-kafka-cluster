@@ -23,16 +23,21 @@
     #       {{ node }}:2181{% if not loop.last %},{% endif %}{%- endfor %} --replication-factor 3 \
     #       --partitions 12 --topic SampleTopic"
     #   run_once: true
+    - name: Test01 -  Validate status Zookeeper and Kafka services
+      shell: systemctl status {{ item }}
+      with_items:
+           - zookeeper
+           - kafka
 
-    - name: Test01 - Create Topic
-      shell: "./kafka-topics.sh --create \
-        --zookeeper {% for node in groups[ kafka_cluster_group_hosts ] -%} \
-        {{ node }}:2181{% if not loop.last %},{% endif %}{%- endfor %} --replication-factor 3 \
-        --partitions 12 --topic SampleTopic"
-      args:
-        chdir: "{{ kafka_home_dir }}/bin"
-      register: output
-      run_once: true
+    # - name: Test01 - Create Topic
+    #   shell: "./kafka-topics.sh --create \
+    #     --zookeeper {% for node in groups[ kafka_cluster_group_hosts ] -%} \
+    #     {{ node }}:2181{% if not loop.last %},{% endif %}{%- endfor %} --replication-factor 3 \
+    #     --partitions 12 --topic SampleTopic"
+    #   args:
+    #     chdir: "{{ kafka_home_dir }}/bin"
+    #   register: output
+    #   run_once: true
 
     - debug:
         msg: "{{ output.stdout_lines }}"
