@@ -18,7 +18,11 @@ initLimit=5
 syncLimit=2
 
 {% for node in groups[ kafka_cluster_group_hosts ] -%}
+{% if inventory_hostname %}}
+server.{{ node.split('-')[1] }} = 0.0.0.0:2888:3888
+{% else%}}
 server.{{ node.split('-')[1] }} = {{ node }}:2888:3888
+{% endif%}}
 {%endfor%}
 {% endif %}
 

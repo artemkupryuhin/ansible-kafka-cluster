@@ -11,7 +11,8 @@
             {{ hostvars[node]['ansible_default_ipv4']['address'] }} {{ node }}
           {% endfor %}
         marker: "# {mark} ANSIBLE MANAGED BLOCK"
-
+  
+  #Start Role kafka-cluster
   roles:
     - name: kafka-cluster
 
