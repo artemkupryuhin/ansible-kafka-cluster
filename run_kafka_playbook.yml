@@ -28,7 +28,7 @@
          register: output
 
        - debug:
-           msg: "{{ output.stdout_lines }}"
+           var: ansible_facts.services
 
     # - name: Test01 - Create Topic
     #   shell: "./kafka-topics.sh --create \
