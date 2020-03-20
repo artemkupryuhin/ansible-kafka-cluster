@@ -28,7 +28,7 @@
          register: output
 
        - debug:
-           var: "{{ item }}[0] {{ item }}[1]"
+           var: "{{ item }}"
          with_items:
             - ansible_facts.services["zookeeper.service"]
             - ansible_facts.services["kafka.service"]
