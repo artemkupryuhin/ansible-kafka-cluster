@@ -29,9 +29,9 @@
 
        - debug:
            var: "{{ item }}"
-           with_items:
-              - ansible_facts.services["zookeeper.service"]
-              - ansible_facts.services["kafka.service"]
+         with_items:
+            - ansible_facts.services["zookeeper.service"]
+            - ansible_facts.services["kafka.service"]
 
     # - name: Test01 - Create Topic
     #   shell: "./kafka-topics.sh --create \
