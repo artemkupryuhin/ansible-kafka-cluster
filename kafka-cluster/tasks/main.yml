@@ -1,9 +1,9 @@
 ---
 - name: Install Java
-  include: java-install.yml
+  include: 01_java-install.yml
 
 - name: Install Apache Kafka
-  include: build.yml
+  include: 02_prepare.yml
 
 - name: Settings services
-  include: config.yml
+  include: 03_config.yml
