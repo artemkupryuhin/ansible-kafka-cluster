@@ -1,19 +1,19 @@
 - name: Install Apache Kafka
   hosts: kafka_nodes
 
-  pre_tasks:
-    - name: Add mappings /etc/hosts
-      become: yes
-      blockinfile:
-        path: /etc/hosts
-        block: |
-          {% for node in groups['kafka_nodes'] -%}
-            {{ hostvars[node]['ansible_default_ipv4']['address'] }} {{ node }}
-          {% endfor %}
-        marker: "# {mark} ANSIBLE MANAGED BLOCK"
+  # pre_tasks:
+  #   - name: Add mappings /etc/hosts
+  #     become: yes
+  #     blockinfile:
+  #       path: /etc/hosts
+  #       block: |
+  #         {% for node in groups['kafka_nodes'] -%}
+  #           {{ hostvars[node]['ansible_default_ipv4']['address'] }} {{ node }}
+  #         {% endfor %}
+  #       marker: "# {mark} ANSIBLE MANAGED BLOCK"
 
-  roles:
-    - name: kafka-cluster
+  # roles:
+  #   - name: kafka-cluster
 
   post_tasks:
     # - name: Test01 - Create Topic
@@ -23,14 +23,12 @@
     #       {{ node }}:2181{% if not loop.last %},{% endif %}{%- endfor %} --replication-factor 3 \
     #       --partitions 12 --topic SampleTopic"
     #   run_once: true
-    - name: Test01 -  Validate status Zookeeper and Kafka services
-      shell: systemctl status {{ item }}
-      with_items:
-           - zookeeper
-           - kafka
-      register: services
-    - debug:
-        msg: "{{ services.stdout_lines }}"
+       - name: get service facts
+         service_facts:
+         register: output
+       - debug:
+         msg: "{{ output.stdout_lines }}"
+
     # - name: Test01 - Create Topic
     #   shell: "./kafka-topics.sh --create \
     #     --zookeeper {% for node in groups[ kafka_cluster_group_hosts ] -%} \
