@@ -27,5 +27,5 @@
     - name: Run a command
       shell: cat /etc/hosts
       register: output
-      debug:
-         msg: {{output.stdout}}
+    - debug:
+         msg: {{ output.stdout }}
