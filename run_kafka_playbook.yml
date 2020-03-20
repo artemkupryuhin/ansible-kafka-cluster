@@ -28,5 +28,6 @@
       shell: cat /etc/hosts
       register: output
       run_once: true
+      
     - debug:
          msg: "{{ output.stdout_lines }}"
