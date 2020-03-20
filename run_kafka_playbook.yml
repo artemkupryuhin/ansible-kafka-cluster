@@ -1,19 +1,19 @@
 - name: Install Apache Kafka
   hosts: kafka_nodes
 
-  # pre_tasks:
-  #   - name: Add mappings /etc/hosts
-  #     become: yes
-  #     blockinfile:
-  #       path: /etc/hosts
-  #       block: |
-  #         {% for node in groups['kafka_nodes'] -%}
-  #           {{ hostvars[node]['ansible_default_ipv4']['address'] }} {{ node }}
-  #         {% endfor %}
-  #       marker: "# {mark} ANSIBLE MANAGED BLOCK"
+  pre_tasks:
+    - name: Add mappings /etc/hosts
+      become: yes
+      blockinfile:
+        path: /etc/hosts
+        block: |
+          {% for node in groups['kafka_nodes'] -%}
+            {{ hostvars[node]['ansible_default_ipv4']['address'] }} {{ node }}
+          {% endfor %}
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
 
-  # roles:
-  #   - name: kafka-cluster
+  roles:
+    - name: kafka-cluster
 
   post_tasks:
 
@@ -26,7 +26,7 @@
         chdir: "{{ kafka_home_dir }}/bin"
       register: output
       run_once: true
-      
+
     - debug:
         msg: "{{ output.stdout_lines }}"
       run_once: true
