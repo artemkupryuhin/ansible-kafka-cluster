@@ -29,10 +29,23 @@
         --partitions 12 --topic SampleTopic"
       args:
         chdir: "{{ kafka_home_dir }}/bin"
-      register: output
+      register: test01_result
       ignore_errors: yes
       run_once: true
 
     - debug:
-        msg: "{{ output.stdout_lines }}"
+        msg: "{{ test01_result.stdout_lines }}"
+      run_once: true
+
+    - name: Test02 - List available topics
+      shell: "./kafka-topics.sh --list \
+        --zookeeper {% for node in groups[ kafka_cluster_group_hosts ] -%} \
+        {{ node }}:2181{% if not loop.last %},{% endif %}{%- endfor %}"
+      args:
+        chdir: "{{ kafka_home_dir }}/bin"
+      register: test02_result
+      ignore_errors: yes
+      run_once: true
+    - debug:
+        msg: "{{ test02_result.stdout_lines }}"
       run_once: true
