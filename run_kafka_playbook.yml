@@ -16,13 +16,7 @@
   #   - name: kafka-cluster
 
   post_tasks:
-    # - name: Test01 - Create Topic
-    #   debug:
-    #     msg: "{{ kafka_data_dir }}/bin/kafka-topics.sh \
-    #       --create --zookeeper {% for node in groups[ kafka_cluster_group_hosts ] -%} \
-    #       {{ node }}:2181{% if not loop.last %},{% endif %}{%- endfor %} --replication-factor 3 \
-    #       --partitions 12 --topic SampleTopic"
-    #   run_once: true
+
        - name: get service facts
          service_facts:
          register: output
@@ -30,8 +24,8 @@
        - debug:
            var: "{{ item }}"
          with_items:
-            - ansible_facts.services["zookeeper.service"]
-            - ansible_facts.services["kafka.service"]
+            - ansible_facts.services["zookeeper.service"][state]
+            - ansible_facts.services["kafka.service"][state]
 
     # - name: Test01 - Create Topic
     #   shell: "./kafka-topics.sh --create \
