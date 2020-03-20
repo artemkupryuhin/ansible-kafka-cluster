@@ -26,8 +26,9 @@
        - name: get service facts
          service_facts:
          register: output
+
        - debug:
-         msg: "{{ output.stdout_lines }}"
+           msg: "{{ output.stdout_lines }}"
 
     # - name: Test01 - Create Topic
     #   shell: "./kafka-topics.sh --create \
