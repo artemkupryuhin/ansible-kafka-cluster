@@ -1,4 +1,4 @@
-- name: Install Apache Kafka 
+- name: Install Apache Kafka
   hosts: kafka_nodes
 
   pre_tasks:
@@ -10,16 +10,16 @@
           {% for node in groups['kafka_nodes'] -%}
             {{ hostvars[node]['ansible_default_ipv4']['address'] }} {{ node }}
           {% endfor %}
-        marker: "# {mark} ANSIBLE MANAGED BLOCK" 
-      
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
+
   roles:
     - name: kafka-cluster
-  
+
   post_tasks:
-      - name: Test01 - Create Topic 
-        debug: 
-          msg: "{{ kafka_data_dir }}/bin/kafka-topics.sh \ 
-            --create --zookeeper {% for node in groups[ kafka_cluster_group_hosts ] -%} \ 
-            {{ node }}:2181{% if not loop.last %},{% endif %}{%- endfor %} --replication-factor 3 \
-            --partitions 12 --topic SampleTopic"
-        run_once: true
+    - name: Test01 - Create Topic
+      debug:
+        msg: "{{ kafka_data_dir }}/bin/kafka-topics.sh \
+          --create --zookeeper {% for node in groups[ kafka_cluster_group_hosts ] -%} \
+          {{ node }}:2181{% if not loop.last %},{% endif %}{%- endfor %} --replication-factor 3 \
+          --partitions 12 --topic SampleTopic"
+      run_once: true

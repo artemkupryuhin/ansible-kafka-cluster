@@ -12,5 +12,5 @@
   lineinfile:
     dest: /etc/environment
     state: present
-    regexp: '^JAVA_HOME'
-    line: 'JAVA_HOME=/usr/lib/jvm/java-1.{{  kafka_java_version }}.0-openjdk-amd64'
+    regexp: "^JAVA_HOME"
+    line: "JAVA_HOME=/usr/lib/jvm/java-1.{{  kafka_java_version }}.0-openjdk-amd64"

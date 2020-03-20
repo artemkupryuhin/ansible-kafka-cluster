@@ -13,4 +13,3 @@
     enabled: true
     name: kafka
     state: restarted
-  
