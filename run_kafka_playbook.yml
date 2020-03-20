@@ -30,6 +30,7 @@
       args:
         chdir: "{{ kafka_home_dir }}/bin"
       register: output
+      ignore_errors: yes
       run_once: true
 
     - debug:
