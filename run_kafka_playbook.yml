@@ -35,5 +35,5 @@
     - debug:
         msg: 
          - "{{ output.stdout_lines }}"
-         - "{{ output.stdouterr_lines }}"
+         - "{{ output.stderr }}"
       run_once: true
