@@ -1,19 +1,19 @@
 - name: Install Apache Kafka
   hosts: kafka_nodes
 
-  # pre_tasks:
-  #   - name: Add mappings /etc/hosts
-  #     become: yes
-  #     blockinfile:
-  #       path: /etc/hosts
-  #       block: |
-  #         {% for node in groups['kafka_nodes'] -%}
-  #           {{ hostvars[node]['ansible_default_ipv4']['address'] }} {{ node }}
-  #         {% endfor %}
-  #       marker: "# {mark} ANSIBLE MANAGED BLOCK"
+  pre_tasks:
+    - name: Add mappings /etc/hosts
+      become: yes
+      blockinfile:
+        path: /etc/hosts
+        block: |
+          {% for node in groups['kafka_nodes'] -%}
+            {{ hostvars[node]['ansible_default_ipv4']['address'] }} {{ node }}
+          {% endfor %}
+        marker: "# {mark} ANSIBLE MANAGED BLOCK"
 
-  # roles:
-  #   - name: kafka-cluster
+  roles:
+    - name: kafka-cluster
 
   post_tasks:
     # - name: Test01 - Create Topic
@@ -26,12 +26,12 @@
 
     - name: Test01 - Create Topic
       shell: "{{ kafka_data_dir }}/bin/kafka-topics.sh \
-             --create --zookeeper {% for node in groups[ kafka_cluster_group_hosts ] -%} \
-             {{ node }}:2181{% if not loop.last %},{% endif %}{%- endfor %} --replication-factor 3 \
-             --partitions 12 --topic SampleTopic"
+        --create --zookeeper {% for node in groups[ kafka_cluster_group_hosts ] -%} \
+        {{ node }}:2181{% if not loop.last %},{% endif %}{%- endfor %} --replication-factor 3 \
+        --partitions 12 --topic SampleTopic"
       register: output
       run_once: true
 
     - debug:
-         msg: "{{ output.stdout_lines }}"
+        msg: "{{ output.stdout_lines }}"
       run_once: true
