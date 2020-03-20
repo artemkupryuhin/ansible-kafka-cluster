@@ -6,6 +6,8 @@
     state: present
     cache_valid_time: 1800
     update_cache: yes
+  ignore_errors: yes
+    
 
 - name: Set JAVA_HOME
   become: yes
