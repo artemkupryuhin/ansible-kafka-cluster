@@ -15,12 +15,24 @@
   #Start Role kafka-cluster
   roles:
     - name: kafka-cluster
-
+ 
+  #Testing
   post_tasks:
     - name: sleep for 30 seconds and continue with play
       wait_for:
         timeout: 30
       delegate_to: localhost
+    # - name: Test01 - Create Topic
+    #   shell: "./kafka-topics.sh --create \
+    #     --zookeeper {% for node in groups[ kafka_cluster_group_hosts ] -%} \
+    #     {{ node }}:2181{% if not loop.last %},{% endif %}{%- endfor %} --replication-factor 2 \
+    #     --partitions 12 --topic SampleTopic"
+    #   args:
+    #     chdir: "{{ kafka_home_dir }}/bin"
+    #   register: test01_result
+    #   ignore_errors: yes
+    #   run_once: true
+    # -server ZOOKEEPER_PRIMARY_NODE:2181 ls /brokers/ids | tail -n1
 
     - name: Test01 - Create Topic
       shell: "./kafka-topics.sh --create \
@@ -46,6 +58,8 @@
       register: test02_result
       ignore_errors: yes
       run_once: true
+    
+    
     - debug:
         msg: "{{ test02_result.stdout_lines }}"
       run_once: true
